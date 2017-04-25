@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         sendButton.setTitle("Message Sent", for:UIControlState.normal)
     }
     
+    // Testing changes for git commmits
+    
     @IBOutlet var fieldMessage: UITextField!
     
     @IBOutlet var labelMessage: UILabel!
