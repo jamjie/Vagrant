@@ -10,7 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var isSent = false;
+    
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet var fieldMessage: UITextField!
+    @IBOutlet var labelMessage: UILabel!
+    @IBOutlet weak var fieldName: UITextField!
+    @IBOutlet weak var labelName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,39 +27,30 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func buttonPressedOutside(_ sender: UIButton){
-        self.titleLabel.text = "Outside!"
-    }
 
     @IBAction func buttonSend(_ sender: UIButton) {
-        labelMessage.isHidden = false
-        labelMessage.text = fieldMessage.text
-        labelMessage.textColor = UIColor.red
-        fieldMessage.text = ""
+        if(isSent == false){
+            // Unhide message and name labels
+            labelMessage.isHidden = false
+            labelName.isHidden = false
+            // Set text to what was entered in fields
+            labelMessage.text = fieldMessage.text
+            labelName.text = fieldName.text
+            // Set colors
+            labelMessage.textColor = UIColor.red
+            labelName.textColor = UIColor.blue
+            // Clear fields
+            fieldMessage.text = ""
+            fieldName.text = ""
+            // Change send button text
+            sendButton.setTitle("Message Sent", for:UIControlState.normal)
+            isSent = true
+        }
+        // Resign keyboard in any case
         fieldMessage.resignFirstResponder()
-        sendButton.setTitle("Message Sent", for:UIControlState.normal)
-    }
-    
-    // Testing changes for git commmits
-    
-    @IBOutlet var fieldMessage: UITextField!
-    
-    @IBOutlet var labelMessage: UILabel!
-    
-    @IBOutlet var textBox: UITextField!
-    
-    @IBAction func buttonPressedDragIn(_ sender: Any) {
-        self.titleLabel.text = "Dragon?"
+        fieldName.resignFirstResponder()
         
     }
-    @IBAction func buttonPressedDragOut(_ sender: Any) {
-        self.titleLabel.text = "Drag out."
-    }
-    @IBOutlet var titleLabel: UILabel!
-
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        self.titleLabel.text = self.textBox.text;
-        self.textBox.resignFirstResponder();
-    }
+    
 }
 
